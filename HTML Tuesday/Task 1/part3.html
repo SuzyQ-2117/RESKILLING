@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Tables | SuzyQ</title>
+    <style>
+        table, th, td {
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+    <!-- TABLES -->
+    <table>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+        </tr>
+        <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+        </tr>
+        <tr>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+            <td>cell data</td>
+        </tr>
+    </table>
+    <!-- FORMS -->
+    <!-- Forms can have a Method and an Action -->
+    <!-- Method: How to send information (usually to a server) -->
+    <!-- Action: Where to send the info -->
+    <!-- The GET Method sends our form input to the URL bar witha  Name/Value pair-->
+    <!-- We use these like a hyperlink -->
+    <form method=""get" action="search.html">
+        <h1>GET Form</h1>
+        <!-- an input for data -->
+        <input name="q" type=""text">
+        <!-- A button to send the form -->
+        <button type="submit">search</button>
+    </form>
+
+    <!-- POST method sends data to the action URL -->
+    <form method="post" action="mailform.php">
+        <h1>POST form</h1>
+            <!-- an input for data -->
+            <input name="q" type=""text">
+            <!-- A button to send the form -->
+            <button type="submit">search</button>
+    </form>
+    <br/>
+    <br/>
+    <!-- FORM inputs-->
+    <!-- Checkboxes -->
+    <form>
+        <h1>Checkboxes</h1>
+        <input type="checkbox" name="checkboxOne" value="1"/>1
+        <input type="checkbox" name="checkboxTwo" value="2"/>2
+    </form>
+    <br/>
+    <br/>
+    <!-- Radio buttons -->
+    <fieldset>
+        <legend>Question one: Which letter do you want to select?</legend>
+        <input type="radio" name="multiChoice" value="a"/>a
+        <input type="radio" name="multiChoice" value="b"/>b
+        <input type="radio" name="multiChoice" value="c"/>c
+        <input type="radio" name="multiChoice" value="d"/>d
+    </fieldset>
+    <br/>
+    <hr/>
+    <br/>
+    <!-- Date input (creates a calendar) -->
+    <input type="date" name="birthday"/>
+    <br/>
+    <br/>
+    <hr/>
+    <br/>
+    <!-- Colour picker -->
+    <input type="color" name="paint"/>
+    <br/>
+    <hr/>
+    <br/>
+    <!-- iFrames - lets you run a website inside a rectangle/shape -->
+    <iframe style="border: 2px solid red;" height="200" width="600" src="https://www.wikipedia.com/"></iframe>
+    <iframe height="300" width="50%" name="iframe_two"></iframe>
+    <a href="https://www.wikipedia.com/" target="iframe_two">Wiki on iFrame</a>
+
+
+
+</body>
+</html>

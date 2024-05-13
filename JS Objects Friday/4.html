@@ -1,0 +1,100 @@
+<html>
+
+<script>
+
+    function add(){
+        let num1 = txt1.value
+        let num2 = txt2.value
+
+        if (num1==""){
+            alert("Please enter a value in box 1")
+            //this next line will bring the control back to text box when the alert is dismissed
+            txt1.focus()
+        } else {
+            if (num2=="") {
+                alert("Please enter a value in box 2")
+                txt2.focus()
+            } else {
+                let result = parseInt(num1) + parseInt(num2)
+                txt3.value = result
+            }
+        }
+    }
+
+    function subtract(){
+        let num1 = txt1.value
+        let num2 = txt2.value
+
+        if (num1==""){
+            alert("Please enter a value in box 1")
+            //this next line will bring the control back to text box when the alert is dismissed
+            txt1.focus()
+        } else {
+            if (num2=="") {
+                alert("Please enter a value in box 2")
+                txt2.focus()
+            } else {
+                let result = parseInt(num1) - parseInt(num2)
+                txt3.value = result
+            }
+        }
+    }
+
+    function multiply(){
+        let num1 = txt1.value
+        let num2 = txt2.value
+
+        if (num1==""){
+            alert("Please enter a value in box 1")
+            //this next line will bring the control back to text box when the alert is dismissed
+            txt1.focus()
+        } else {
+            if (num2=="") {
+                alert("Please enter a value in box 2")
+                txt2.focus()
+            } else {
+                let result = parseInt(num1) * parseInt(num2)
+                txt3.value = result
+            }
+        }
+    }
+
+    function divide(){
+        let num1 = txt1.value
+        let num2 = txt2.value
+
+        if (num1==""){
+            alert("Please enter a value in box 1")
+            //this next line will bring the control back to text box when the alert is dismissed
+            txt1.focus()
+        } else {
+            if (num2=="") {
+                alert("Please enter a value in box 2")
+                txt2.focus()
+            } else {
+                let result = parseInt(num1) / parseInt(num2)
+                txt3.value = result
+            }
+        }
+    }
+
+</script>
+
+First number: 
+<input id="txt1">
+<br/>
+Second number: 
+<input id="txt2">
+<br/>
+<input id="btn1" type="button" value="Add" onclick="add()">
+<br/>
+<input id="btn2" type="button" value="Subtract" onclick="subtract()">
+<br/>
+<input id="btn3" type="button" value="Multiply" onclick="multiply()">
+<br/>
+<input id="btn4" type="button" value="Divide" onclick="divide()">
+<br/>
+Result: 
+<input id="txt3">
+
+</html>

@@ -1,0 +1,30 @@
+<html>
+<script>
+
+// Instead of using 3 identical functions to check the ASCII codes, here we can just parse the numbers from the input buttons and measure against the parsed parameters. This saves on codespace and therefore programming power needed to execute the code
+
+    function copyData(first,last) {
+        msg2.value=""
+        let msg=msg1.value
+        for(let i=0;i<msg.length;i++){
+            if(msg.charCodeAt(i)>=first&&msg.charCodeAt(i)<=last){
+                 msg2.value+=msg.substring(i,i+1)
+            }
+        }
+    }
+    function clearBox() {
+        msg1.value=""
+        msg2.value=""
+        msg1.focus()
+    }
+</script>
+Message 1: <input id="msg1"> <input type="button" value="Clear" onclick="clearBox()">
+<br/>
+<br/>
+<input type="button" value="Copy Lower Case only" onclick="copyData(97,122)"><input type="button" value="Copy Upper Case only" onclick="copyData(65,90)"><input type="button" value="Copy Numbers only" onclick="copyData(48,57)">
+<br/>
+<br/>
+Message 2: <input id="msg2">
+<br/>
+<br/>
+</html>

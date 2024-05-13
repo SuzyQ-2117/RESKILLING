@@ -1,0 +1,80 @@
+<html>
+
+<script>
+
+    //things we want to validate:
+    //Name: Cannot be empty, cannot contain numbers
+    //Email: Must contain @, must contain at least one .
+
+    function checkDigits(data){
+        for(let i=0;i<data.length;i++){
+            if(data.charCodeAt(i)>=48&&data.charCodeAt(i)<=57){
+                
+                // this function will return false if there ARE numbers
+                
+                return false
+            }
+        }
+
+        //this function will return true if there are only letters
+
+        return true
+    }
+
+    // this function will count how many of a specific character are entered in the text box. We use this to check that a valid email address has been entered - i.e. the email address contains 1 "@" sign and at least 1 "."
+
+    function countCharacters(data,character){
+        let count=0
+        for(let i=0;i<data.length;i++){
+            if(data.substring(i,i+1)==character){
+                count++
+            }
+        }
+        return count
+    }
+
+    //errName.innerHTML can actually edit the text contained within a HTML element. There's no requirement for setting a default message, just remember that the page designer will need to work with the longest message length when designing the page
+
+    function validation(){
+        errName.innerHTML=""
+        errEmail.innerHTML=""
+        if(na.value==""){
+            errName.innerHTML="* Name cannot be blank"
+            errName.style.visibility="visible"
+            event.preventDefault()
+        } else {
+            if(checkDigits(na.value)==false){
+                errName.innerHTML="* Name cannot contain numbers" 
+                errName.style.visibility="visible"
+                event.preventDefault()
+            }
+        }
+        if(email1.value==""){
+            errEmail.innerHTML="* Email address cannot be blank"
+            errEmail.style.visibility="visible"
+            event.preventDefault()
+        } else {
+            if (countCharacters(email1.value,"@")!=1 || countCharacters(email1.value,".")==0){
+                errEmail.innerHTML="* Please enter a valid email address" 
+                errEmail.style.visibility="visible"
+                event.preventDefault()
+            }
+        }
+    }
+</script>
+
+<h2>Registration Form</h2>
+<br/>
+<form action="https://www.bbc.co.uk" onsubmit="validation()">
+    Name: <input id="na">
+    <span id="errName" style="color:red;visibility: hidden;"></span>
+    <br/>
+    <br/>
+    Email: <input id="email1">
+    <span id="errEmail" style="color:red;visibility: hidden;"></span>
+    <br/>
+    <br/>
+    <input type="submit" value="Create account">
+
+</form>
+</html>

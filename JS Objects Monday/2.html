@@ -1,0 +1,45 @@
+<html>
+<script>
+    function copyLowerCase() {
+        msg2.value =""
+        let msg=msg1.value
+        for(let i=0;i<msg.length;i++){
+            if(msg.charCodeAt(i)>=97 && msg.charCodeAt(i)<=122){
+                 msg2.value+=msg.substring(i,i+1)
+            }
+        }
+    }
+    function copyUpperCase() {
+        msg2.value =""
+        let msg=msg1.value
+        for(let i=0;i<msg.length;i++){
+            if(msg.charCodeAt(i)>=65 && msg.charCodeAt(i)<=90){
+                 msg2.value+=msg.substring(i,i+1)
+            }
+        }
+    }
+    function copyNumbers() {
+        msg2.value =""
+        let msg=msg1.value
+        for(let i=0;i<msg.length;i++){
+            if(msg.charCodeAt(i)>=48 && msg.charCodeAt(i)<=57){
+                 msg2.value+=msg.substring(i,i+1)
+            }
+        }
+    }
+    function clearBox() {
+        msg1.value=""
+        msg2.value=""
+        msg1.focus()
+    }
+</script>
+Message 1: <input id="msg1"> <input type="button" value="Clear" onclick="clearBox()">
+<br/>
+<br/>
+<input type="button" value="Copy Lower Case only" onclick="copyLowerCase()"><input type="button" value="Copy Upper Case only" onclick="copyUpperCase()"><input type="button" value="Copy Numbers only" onclick="copyNumbers()">
+<br/>
+<br/>
+Message 2: <input id="msg2">
+<br/>
+<br/>
+</html>

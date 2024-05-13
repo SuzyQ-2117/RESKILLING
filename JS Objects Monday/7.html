@@ -1,0 +1,29 @@
+<html>
+
+<script>
+    function validation(){
+        if(user1.value==""){
+            alert("Please enter your username")
+            event.preventDefault()
+        }
+    }
+</script>
+        <!--Forms do not have any special appreance for how they render in the browser -->
+        <!--You'll want to check if text boxes are empty or not *BEFORE* the form is submitted-->
+
+<form action="https://www.bbc.com" onsubmit="validation()">
+Username: <input id="user1">
+<br/>
+        <!--Submit is a special kind of input - when you use this in a form, this will pick up all the vlues and send them to the action in the opening form tag -->
+
+<input type="submit" value="Login">
+
+        <!--The server stores the values so you don't need to worry about assigning variables in the front-end - you'll use NodeJS for this-->
+
+</form>
+
+        <!--Any text boxes outside of the form will not get picked up by the submit-->
+
+Password: <input>
+
+</html>

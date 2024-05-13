@@ -1,0 +1,17 @@
+<html>
+<script>
+    function checking(){
+        if(event.keyCode==65){
+            //This prevents the default behaviour stored in the Event object by the browser - in this example it will stop a capital A from being entered into the text box
+            //Real-life example: preventing special characters being used in Passsword fields  
+            event.preventDefault()
+            console.log("Big As are banned here")
+        }
+    }
+</script>
+<input id="nme1" onkeypress="checking()">
+</html>
+
+
+
+
