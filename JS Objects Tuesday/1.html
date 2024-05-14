@@ -1,0 +1,30 @@
+<html>
+<script>
+    function check(){
+        let find=find1.value
+        let message=msg.value
+        let count=0
+        for(let i=0;i<message.length;i++){
+            
+            // this searches for the first letter of the search term in the message box first - if there's no matching first character then it's impossible for there to be a match. 
+
+            // This won't make a difference with smaller messages and search terms but will make a huge difference in time and processing power for long search terms in even longer messages 
+
+            if(message.substring(i,i+1)==find.substring(0,1)){
+                if(message.substring(i,i+find.length)==find){
+                    count++
+                    i+=find.length-1
+                }
+            }
+        }
+        alert(count)
+    }
+</script>
+Find this: <input id="find1">
+<br/>
+<br/>
+<input type="button" id="btn1" value="Search" onclick="check()">
+<br/>
+<br/>
+Message: <input id="msg">
+</html>

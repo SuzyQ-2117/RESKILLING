@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <script>
+ 
+        function CountPattern(){
+            // how many times it matches starts at 0
+            let count = 0
+            // how long the search term is
+            let FindLen = txtFind.value.length
+            // not mandatory - just assigning a name so it's easier to work with
+            let FullMsg = txtMsg.value
+            // max number of times loop will run - difference between two input lengths
+            let checkMax= txtMsg.value.length - txtFind.value.length
+            
+            for (let i = 0;i<=checkMax;i++){
+                console.log(FullMsg.substring(i,i+FindLen).toUpperCase())
+                console.log(txtFind.value.toUpperCase())
+                if(FullMsg.substring(i,i+FindLen).toUpperCase()==txtFind.value.toUpperCase()){
+                    count++
+                }
+            }
+            txtResult.value = count
+        }
+    </script>
+</head>
+<body>
+    Search for: <input id="txtFind">
+    <br>
+    <br>
+    <input type="button" value="Count occurance" onclick="CountPattern()">
+    <br>
+    <br>
+    Message: <input id="txtMsg">
+    <br>
+    <br>
+    Result: <input id="txtResult">
+    <br>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<script>
+    function findWords(){
+        let msg1Length = msg1.value.length
+        let loop = msg1Length - findBox.value.length
+        let outcome=""
+        for(let i=0;i<=loop;i++){
+            if(msg1.value.substring(i,i+findBox.value.length)==findBox.value){
+                i=i+msg1Length-1
+                outcome+=replace.value
+            } else {
+                outcome+=msg1.value.substring(i,i+1)
+            }                 
+        }
+        result.value=outcome
+    }
+</script>
+Replace <input id="findBox"> with <input id="replace">
+<br/>
+<br/>
+<input type="button" value="Find!" onclick="findWords()">
+<br/>
+<br/>
+Message: <input id="msg1">
+<br/>
+<br/>
+Result: <input id="result">
+</html>

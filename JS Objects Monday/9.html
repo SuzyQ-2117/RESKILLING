@@ -1,0 +1,24 @@
+<html>
+<script>
+    function findWords(){
+        let count=0
+        // data = FindLen
+        let data = msg1.value.length
+        let loop = data - words.value.length
+        for(let i=0;i<=loop;i++){
+            if(msg1.value.substring(i,i+words.value.length)==words.value){
+                count++
+                console.log(count)
+            }
+        }
+        result.value=count
+    }
+</script>
+Find: <input id="words"> <input type="button" value="Find!" onclick="findWords()">
+<br/>
+<br/>
+<input id="msg1">
+<br/>
+<br/>
+<input id="result">
+</html>
