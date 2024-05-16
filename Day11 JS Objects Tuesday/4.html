@@ -3,19 +3,19 @@
     let employees=[
         {
             Name: "Suzy",
-            Location: "Wales",
+            Location: "Cwmbran",
             Salary: 1386,
             Department: "Banking"
         },
         {
             Name: "Craig",
-            Location: "Wales",
+            Location: "Cardiff",
             Salary: 2173,
             Department: "IT"
         },
         {
             Name: "Mark",
-            Location: "Wales",
+            Location: "Brecon",
             Salary: 1346,
             Department: "Management"
         },
@@ -84,6 +84,50 @@
         employees.push(newEmp)
         showEmployees()
     }
+function filterEmployee(){
+    table1.innerHTML=""
+    let thead1=document.createElement("thead")
+            thead1.innerHTML="<td>Record</td><td>Name</td><td>Location</td><td>Department</td><td>Salary</td><td>Tax Deduction</td><td>Operations</td>"
+        table1.appendChild(thead1)
+    for(let i=0;i<employees.length;i++){
+        if(employees[i].Department==filterDept.value){
+            let tr1 = document.createElement("tr")
+            let td0 = document.createElement("td")
+            let td1 = document.createElement("td")
+            let td2 = document.createElement("td")
+            let td3 = document.createElement("td")
+            let td4 = document.createElement("td")
+            let td5 = document.createElement("td")
+            let td6 = document.createElement("td")
+            td0.innerHTML=i+1
+            td1.innerHTML=employees[i].Name
+            td2.innerHTML=employees[i].Location
+            td3.innerHTML=employees[i].Department
+            td4.innerHTML=employees[i].Salary
+            td5.innerHTML=employees[i].Salary*0.15
+
+            let btnDelete=document.createElement("input")
+                btnDelete.type="button"
+                btnDelete.value="Delete"
+                btnDelete.onclick=()=>{
+                    let choice=confirm("Are you sure?")
+                    if (choice==true){
+                        employees.splice(i,1)
+                        showEmployees()
+                    }
+                }
+            td6.appendChild(btnDelete)
+            tr1.appendChild(td0)
+            tr1.appendChild(td1)
+            tr1.appendChild(td2)
+            tr1.appendChild(td3)
+            tr1.appendChild(td4)
+            tr1.appendChild(td5)
+            tr1.appendChild(td6)
+            table1.appendChild(tr1)
+        }
+    }
+}
 </script>
 <body onload="showEmployees()">
 Name:<input id="name1"> Location:<input id="location1">
@@ -103,14 +147,14 @@ Salary:<input id="salary1"> Department:<select id="dept1">
 <br/>
 <br/>
 <br/>
-<select id="dept1">
+<select id="filterDept">
     <option>Please Select</option>
     <option value="Banking">Banking & Finance</option>
     <option value="IT">Information Tech</option>
     <option value="Management">Senior Leadership</option>
     <option value="Sales">Sales</option>
     <option value="HR">Human Resources</option>
-    </select><input type="button" value="Filter Employees">
+    </select><input type="button" value="Filter Employees" onclick="filterEmployee()">
 <br/>
 <br/>
 <br/>

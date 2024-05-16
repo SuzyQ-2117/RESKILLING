@@ -1,0 +1,99 @@
+<html>
+    <script>
+        function displayPosts(posts){
+            postsTable.innerHTML=""
+            let tr0 = document.createElement("thead")
+            tr0.style.color = "red"
+            tr0.innerHTML = "<td> User ID: </td> <td> ID: </td > <td> Title: </td>  <td> Body: </td>   <td> Comments: </td>"
+            postsTable.appendChild(tr0)
+            for(let i=0;i<posts.length;i++){
+                let tr1=document.createElement("tr")
+                let td0=document.createElement("td")
+                td0.innerHTML=posts[i].userId
+                let td1=document.createElement("td")
+                td1.innerHTML=posts[i].id
+                let td2=document.createElement("td")
+                td2.innerHTML=posts[i].title
+                let td3=document.createElement("td")
+                td3.innerHTML=posts[i].body
+                let td4=document.createElement("td")
+                let btnShowComment = document.createElement("input")
+                btnShowComment.type = "button"
+                btnShowComment.value = "Show Comments"
+                btnShowComment.onclick= ()=> {
+                    getComments(posts[i].id)
+                }
+                td4.appendChild(btnShowComment)
+                tr1.appendChild(td0)
+                tr1.appendChild(td1)
+                tr1.appendChild(td2)
+                tr1.appendChild(td3)
+                tr1.appendChild(td4)
+                postsTable.appendChild(tr1)
+            }
+            console.log("Displayed posts")
+        } 
+
+        function processResponse(response){
+            let responsePromise=response.json()
+            responsePromise.then(displayPosts)
+            console.log("Processed posts")
+        }
+        function getPosts(posts){
+            let postsPromise=fetch("https://jsonplaceholder.typicode.com/posts")
+            postsPromise.then(processResponse)
+            console.log("Retrieved posts")
+        }
+        function getComments(postID){
+            let commentsPromise=fetch("https://jsonplaceholder.typicode.com/posts/"+postID+"/comments")
+            commentsPromise.then(processCommentsResponse)
+            console.log("Retrieved comments"+postID)
+        }
+        function processCommentsResponse(commentsResponse){
+            let responseCommentsPromise=commentsResponse.json()
+            responseCommentsPromise.then(showComments)
+            console.log("Processed comments")
+        }
+
+        function showComments(comments){
+            commentsTable.innerHTML=""
+            let tr0 = document.createElement("thead")
+            tr0.style.color = "red"
+            tr0.innerHTML = "<td> Post ID: </td> <td> ID: </td > <td> Name: </td>  <td> Email: </td>   <td> Body: </td>"
+            commentsTable.appendChild(tr0)
+            for(let i=0;i<comments.length;i++){
+                let tr1=document.createElement("tr")
+                let td0=document.createElement("td")
+                td0.innerHTML=comments[i].postId
+                let td1=document.createElement("td")
+                td1.innerHTML=comments[i].id
+                let td2=document.createElement("td")
+                td2.innerHTML=comments[i].name
+                let td3=document.createElement("td")
+                td3.innerHTML=comments[i].email
+                let td4=document.createElement("td")
+                td4.innerHTML=comments[i].body
+                tr1.appendChild(td0)
+                tr1.appendChild(td1)
+                tr1.appendChild(td2)
+                tr1.appendChild(td3)
+                tr1.appendChild(td4)
+                commentsTable.appendChild(tr1)
+            }
+            console.log("displayed comments")
+        }
+    </script>
+<body onload="getPosts()">
+    <br/>
+    <h1>Posts</h1>
+    <br/>
+    <br/>
+    <table id="postsTable" border="1"></table>
+    <br/>
+    <br/>
+    <h1>Comments</h1>
+    <br/>
+    <br/>
+    <table id="commentsTable" border="1"></table>
+</body>
+</html>
