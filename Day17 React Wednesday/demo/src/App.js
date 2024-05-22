@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+// we build the page in here and then it renders into the index.html file in the public folder 
 
+import './App.css';
+// remember to import the component
+import FirstComponent from './components/FirstComponent';
+import ImageComponent from './components/ImageComponent';
+
+// in every app you create, this is the standard setup
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>SuzyQ</h1>
+      <FirstComponent />
+      <ImageComponent />
     </div>
   );
 }
