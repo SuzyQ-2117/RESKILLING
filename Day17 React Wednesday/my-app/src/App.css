@@ -47,6 +47,7 @@
 }
 
 .divleft, .divright {
+  margin: 20px;
   max-width: 300px;
 }
 

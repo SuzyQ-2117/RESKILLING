@@ -11,9 +11,9 @@ const Card = (props) => {
             <div className="content flex">
                 <div className="divleft">
                     <img src={pic} width="150px" />
-                    <h1>{name} {isVerified && '🐾'}</h1>
                 </div>
                 <div className="divright">
+                    <h1>{name} {isVerified && '🐾'}</h1>
                     <p>{age}, {location}</p>
                     <p>{blurb}</p>
                 </div>
@@ -24,9 +24,9 @@ const Card = (props) => {
             <div className="content flex">
                 <div className="divleft">
                     <img src={pic} width="150px" />
-                    <h1>{name}</h1>
                 </div>
                 <div className="divright">
+                    <h1>{name}</h1>
                     <p>{age}, {location}</p>
                     <p>{blurb}</p>
                 </div>
