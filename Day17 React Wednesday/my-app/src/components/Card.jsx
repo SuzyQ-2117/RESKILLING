@@ -4,20 +4,37 @@ const Card = (props) => {
     const age = props.age;
     const location = props.location;
     const blurb = props.blurb;
-    const isActive = props.isActive
+    const isVerified = props.isVerified;
 
-    return(
-        <div className="content flex">
-            <div className="divleft">
-                <img src={pic} width="150px" />
-                <h1>{name}</h1>
+    if(isVerified) {
+        return(
+            <div className="content flex">
+                <div className="divleft">
+                    <img src={pic} width="150px" />
+                    <h1>{name} {isVerified && '🐾'}</h1>
+                </div>
+                <div className="divright">
+                    <p>{age}, {location}</p>
+                    <p>{blurb}</p>
+                </div>
             </div>
-            <div className="divright">
-                <p>{age}, {location}</p>
-                <p>{blurb}</p>
+        );
+    } else {
+        return(
+            <div className="content flex">
+                <div className="divleft">
+                    <img src={pic} width="150px" />
+                    <h1>{name}</h1>
+                </div>
+                <div className="divright">
+                    <p>{age}, {location}</p>
+                    <p>{blurb}</p>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    
 }
 
 export default Card;

@@ -9,7 +9,9 @@ function App() {
     <div className="App">
       <FirstComp />
       <Image />
-      <Card pic={selfie} name={"Suzy Brown"} age={"32"} location={"Cwmbran, South Wales"} blurb={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In mollis nunc sed id semper risus in. Lectus sit amet est placerat in egestas erat imperdiet."} isActive={true}/>
+      <br />
+      <br />
+      <Card pic={selfie} name={"Suzy Brown"} age={"32"} location={"Cwmbran, South Wales"} blurb={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In mollis nunc sed id semper risus in. Lectus sit amet est placerat in egestas erat imperdiet."} isVerified={true}/>
     </div>
   );
 }
