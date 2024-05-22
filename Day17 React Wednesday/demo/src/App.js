@@ -4,6 +4,8 @@ import './App.css';
 // remember to import the component
 import FirstComponent from './components/FirstComponent';
 import ImageComponent from './components/ImageComponent';
+import Card from './components/Card';
+
 
 // in every app you create, this is the standard setup
 function App() {
@@ -12,6 +14,11 @@ function App() {
       <h1>SuzyQ</h1>
       <FirstComponent />
       <ImageComponent />
+      <br/>
+      <Card name={"Suzy"} age={32} favGame={"Minecraft"} pic={"https://source.unsplash.com/random/200x200?sig=1"}/>
+      <Card name={"Ben"} age={36} favGame={"GTA V"} pic={"https://source.unsplash.com/random/200x200?sig=2"}/>
+      <Card name={"Dave"} age={39} favGame={"Lego"} pic={"https://source.unsplash.com/random/200x200?sig=3"}/>
+      <Card name={"Chris"} age={44} favGame={"FIFA"} pic={"https://source.unsplash.com/random/200x200?sig=4"}/>
     </div>
   );
 }

@@ -1,5 +1,13 @@
 /* this is the thing that made the logo spin when the react page first loaded */
 
+.card {
+  padding: 5px;
+  border-bottom: 1px lightgray solid;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+}
+
 .App {
   text-align: center;
 }
