@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  padding: 25px;
+  border-bottom: 1px lightgray solid;
+  max-width: 600px;
+  margin: auto;
+  text-align: left;
+  align-self: center;
+}
+
+.divleft, .divright {
+  max-width: 300px;
+}
+
+.flex {
+  display: flex;
+}
