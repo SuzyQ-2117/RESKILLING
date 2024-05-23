@@ -18,6 +18,10 @@
   padding: 10px 0px;
 }
 
+.plant {
+  margin: 20px;
+}
+
 .drop-shadow {
   box-shadow: 10px 5px 5px lightgrey;
 }
@@ -76,8 +80,13 @@
 }
 
 .card {
-  margin: 50px;
-  padding: 100px;
+  margin: 5px;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+
+.center {
+  margin: auto;
 }
 
 .headline {
@@ -93,5 +102,21 @@
 .button1 {
   background-color: rgb(86, 116, 78);
   border: none;
+  border-radius: 4px;
   color: white;
+  width: 400px;
+  padding: 5px;
+}
+
+.button2 {
+  background-color: rgb(240, 240, 240);
+  border: none;
+  border-radius: 4px;
+  color: rgb(86, 116, 78);
+  width: 200px;
+  padding: 5px;
+}
+
+.maxwidth {
+  max-width: 750px;
 }
