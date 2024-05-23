@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "symbol": "1",
+        "name": "Digit One",
+        "UnicodeVal": "U+0031"
+    },
+    {
+        "id": 2,
+        "symbol": "2",
+        "name": "Digit Two",
+        "UnicodeVal": "U+0032"
+    },
+    {
+        "id": 3,
+        "symbol": "3",
+        "name": "Digit Three",
+        "UnicodeVal": "U+0033"
+    },
+    {
+        "id": 4,
+        "symbol": "4",
+        "name": "Digit Four",
+        "UnicodeVal": "U+0034"
+    },
+    {
+        "id": 5,
+        "symbol": "5",
+        "name": "Digit Five",
+        "UnicodeVal": "U+0035"
+    }
+]
