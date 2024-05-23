@@ -9,10 +9,10 @@ export default function Navbar() {
             <div className="drop-shadow">
                 <ul className="flex list">
                     <li className="listItem link">
-                        <Link to='/' class="green-text">Home</Link>
+                        <Link to='/' class="green-text link">Home</Link>
                     </li>
                     <li className="listItem link">
-                        <Link to='/shop' class="green-text">Shop</Link>
+                        <Link to='/shop' class="green-text link">Shop</Link>
                     </li>
                 </ul>
             </div>
