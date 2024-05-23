@@ -1,38 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: Poppins;
+  outline: 0px solid red;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.green {
+  text-align: center;
+  background-color: rgb(86, 116, 78);
   color: white;
+  padding: 10px 0px;
 }
 
-.App-link {
-  color: #61dafb;
+.drop-shadow {
+  box-shadow: 10px 5px 5px lightgrey;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.listItem {
+  margin: 20px;
+}
+
+.divleft, .divright {
+  max-height: 400px;
+  max-width: 400px;
+  margin: 25px;
+}
+
+.green-text {
+  color: rgb(86, 116, 78);
+}
+
+.link {
+  text-decoration: none;
+}
+
+
+.block {
+  height: 300px;
+  text-align: center;
+  margin: 20px;
+}
+
+.block::before {
+  content: '';
+  display: inline-block;
+  height: 100%; 
+  vertical-align: middle;
+  margin-right: -0.25em; 
+}
+
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 10px 15px;
+
+}
+
+.left-align {
+  text-align: left;
+}
+
+.card {
+  margin: 50px;
+  padding: 100px;
+}
+
+.headline {
+  font-weight: 500;
+  font-size: xxx-large;
+  margin: 5px 0;
+}
+
+.blurb {
+  padding: 5px;
+}
+
+.button1 {
+  background-color: rgb(86, 116, 78);
+  border: none;
+  color: white;
 }
