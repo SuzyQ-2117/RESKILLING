@@ -22,6 +22,10 @@
   padding: 10px 0px;
 }
 
+.float-right {
+  float: right;
+}
+
 .plant {
   margin: 20px;
 }
