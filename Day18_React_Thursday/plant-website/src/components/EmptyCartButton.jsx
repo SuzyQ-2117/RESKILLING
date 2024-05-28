@@ -1,6 +1,6 @@
-const EmptyCartButton = ({emptyCart}) => {
+const EmptyCartButton = ({reset}) => {
     return (
-        <button onClick={emptyCart}>
+        <button onClick={reset}>
             🗑
         </button>
     );

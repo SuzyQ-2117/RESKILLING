@@ -1,6 +1,6 @@
-const DecreaseButton = ({decrement}) => {
+const DecreaseButton = ({decrease}) => {
     return (
-        <button onClick={decrement}>
+        <button onClick={decrease}>
             -
         </button>
     );
