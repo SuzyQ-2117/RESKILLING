@@ -15,7 +15,10 @@ const PlantCard = ({ id, name, price, imageUrl }) => {
     }
 
     function handleDecrease() {
-        setQuantity(quantity - 1)
+        if(quantity==0){
+            setQuantity(0)
+        } else {
+        setQuantity(quantity - 1) }
     }
 
     function emptyCart() {
