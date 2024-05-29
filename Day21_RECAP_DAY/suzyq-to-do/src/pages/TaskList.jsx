@@ -1,5 +1,6 @@
 import TaskCard from '../components/TaskCard';
 import TaskList from '../TaskList.json'
+import 
 
 const ShowTasks = () => {
 
@@ -14,6 +15,7 @@ const ShowTasks = () => {
                 dueDate={tasks.dueDate}
                 info={tasks.info}
                 imageUrl={tasks.imageUrl}
+                completed={tasks.completed}
                 />
             ))}
             </div>

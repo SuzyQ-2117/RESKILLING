@@ -21,8 +21,14 @@ h1 {
     color: rebeccapurple;
     font-weight: bold;
     list-style-type: none;
+    height: 25px;
     padding: 5px 5px 10px 5px;
     gap: 30px;
+}
+
+.link {
+    width: 100px;
+    display: block;
 }
 
 .link,
@@ -32,4 +38,7 @@ h1 {
 
 .link:hover {
     text-decoration: underline;
+    border: rebeccapurple dashed 1px;
+    background-color: rgb(216,203,216);
+    box-shadow: 2px 2px 8px rebeccapurple;
 }

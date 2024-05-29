@@ -32,7 +32,11 @@
     font-family: Poppins;
 }
 
-.link {
+.button-1:hover {
+    box-shadow: 2px 2px 8px rebeccapurple;
+}
+
+.hc-link {
     display: block;
     color: rebeccapurple;
     text-decoration: none;

@@ -12,10 +12,10 @@ function HomeContent() {
                 <p className="home-blurb">Add your tasks here so you can keep on top of things 😊</p>
                 <div className="flex">
                     <button className="button-1">
-                        <Link className="link" to='/list'>Task List</Link>
+                        <Link className="hc-link" to='/list'>Task List</Link>
                     </button>
                     <button className="button-1">
-                        <Link className="link" to="/add">Add</Link>
+                        <Link className="hc-link" to="/add">Add</Link>
                     </button>
                 </div>
             </div>

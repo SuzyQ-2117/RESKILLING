@@ -1,6 +1,8 @@
+import '../CSS/TaskCard.css'
+
 export default function TaskCard({ name, priority, dueDate, info, imageUrl }) {
     return (
-        <div className="flex"> 
+        <div className="task-card flex"> 
             <div className="card">
                 <div className="flex">
                     <img src={imageUrl} alt=""/>
