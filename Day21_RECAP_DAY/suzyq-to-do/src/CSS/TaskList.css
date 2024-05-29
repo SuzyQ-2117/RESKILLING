@@ -5,6 +5,7 @@
     padding: 50px;
     background-color: rgb(255, 240, 245);
     font-family: Poppins;
+    border-bottom: 1px dashed rebeccapurple;
 }
 
 .card {
