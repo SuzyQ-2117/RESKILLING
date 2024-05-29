@@ -18,6 +18,9 @@ function App() {
           <Route path='/add' element={<AddTaskPage />} />
         </Routes>
       </BrowserRouter>
+      {/* <footer>
+        BLANK
+      </footer> */}
     </div>
   );
 }
