@@ -4,9 +4,9 @@ import TaskList from '../TaskList.json'
 const ShowTasks = () => {
 
     return (
-        <div>
+        <div className="center">
             <h1>Current Task List</h1>
-            <div className="flex">
+            <div className="flex wrap max-width">
             {TaskList.tasks.map((tasks) => (
                 <TaskCard 
                 priority={tasks.priority}

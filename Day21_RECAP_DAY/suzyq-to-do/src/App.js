@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import AddTaskPage from './pages/AddTaskPage';
 import ShowTasks from './pages/TaskList';
+;
 
 
 function App() {

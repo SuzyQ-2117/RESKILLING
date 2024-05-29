@@ -6,7 +6,7 @@
       "priority": "medium",
       "dueDate": "30/05/2024",
       "info": "Take Storm for a walk",
-      "imageUrl": "https://picsum.photos/200",
+      "imageUrl": "https://picsum.photos/50",
       "completed": false
     },
     {
@@ -15,7 +15,7 @@
       "priority": "low",
       "dueDate": "02/06/2024",
       "info": "Book food shop slot",
-      "imageUrl": "https://picsum.photos/200",
+      "imageUrl": "https://picsum.photos/50",
       "completed": false
     },
     {
@@ -24,7 +24,7 @@
       "priority": "low",
       "dueDate": "29/05/2024",
       "info": "info",
-      "imageUrl": "https://picsum.photos/200",
+      "imageUrl": "https://picsum.photos/50",
       "completed": false
     },
     {
@@ -33,7 +33,7 @@
       "priority": "high",
       "dueDate": "30/05/2024",
       "info": "info",
-      "imageUrl": "https://picsum.photos/200",
+      "imageUrl": "https://picsum.photos/50",
       "completed": false
     },
     {
@@ -42,15 +42,35 @@
       "priority": "",
       "dueDate": "2024-06-05",
       "info": "vvvvv",
-      "imageUrl": "https://picsum.photos/200"
+      "imageUrl": "https://picsum.photos/50",
+      "completed": false
     },
     {
       "id": "71ef",
       "name": "buy saucepans",
-      "priority": "",
+      "priority": "high",
       "dueDate": "2024-06-01",
       "info": "GO TO IKEA AND BUY SAUCEPANS YAY",
-      "imageUrl": "https://picsum.photos/200"
+      "imageUrl": "https://picsum.photos/50",
+      "completed": false
+    },
+    {
+      "id": "7a69",
+      "name": "add completed to addTask",
+      "priority": "high",
+      "dueDate": "2024-05-29",
+      "info": "Make it so that new tasks are automatically marked as outstanding",
+      "imageUrl": "https://picsum.photos/50",
+      "completed": false
+    },
+    {
+      "id": "47ca",
+      "name": "fghfghf",
+      "priority": "low",
+      "dueDate": "2024-05-29",
+      "info": "fhfgh",
+      "imageUrl": "ffghbfg",
+      "completed": false
     }
   ]
 }

@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom'
+import '../CSS/NavBar.css'
 
 function NavBar() {
     return (
-        <div>
+        <div className="navbar">
             <h1>SuzyQ's To-Do</h1>
             <div>
                 <ul className=" flex list">
                     <li>
-                        <Link to='/'>Home</Link>
+                        <Link to='/' className="link">Home</Link>
                     </li>
                     <li>
-                        <Link to='/list'>List</Link>
+                        <Link to='/list' className="link">List</Link>
                     </li>
                     <li>
-                        <Link to="/add">Add</Link>
+                        <Link to="/add" className="link">Add</Link>
                     </li>
                 </ul>
             </div>

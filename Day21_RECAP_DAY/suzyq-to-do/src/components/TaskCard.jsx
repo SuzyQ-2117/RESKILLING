@@ -1,21 +1,18 @@
-import TaskList from '../TaskList.json'
-
 export default function TaskCard({ name, priority, dueDate, info, imageUrl }) {
     return (
-        <div>
-            <div className=" ">
-                <div>
+        <div className="flex"> 
+            <div className="card">
+                <div className="flex">
                     <img src={imageUrl} alt=""/>
                     <div>
                         <div className="flex">
-                            <p>{priority}</p>
-                            <p>Due: </p>
-                            <p>{dueDate}</p>
+                            <p className="gap">Priority: {priority}</p>
+                            <p className="gap">Due: {dueDate}</p>
                         </div>
                         <p>{name}</p>
                     </div>
-                <p>{info}</p>
                 </div>
+                <p>{info}</p>
             </div>
         </div>
     );

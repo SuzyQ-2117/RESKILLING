@@ -1,6 +1,18 @@
-import { useState } from "react"
+import { useState } from "react";
 
-function AddTask() {
+export default function PopUpBox() {
+    const modal = document.querySelector("#modal");
+    const openModal = document.querySelector("#openModal");
+    const closeModal = document.querySelector("#closeModal");
+
+    if (modal) {
+    openModal &&
+        openModal.addEventListener("click", () => modal.showModal());
+
+    closeModal &&
+        closeModal.addEventListener("click", () => modal.close());
+    }
+
     const [priority, setPriority] = useState("")
     const [name, setName] = useState("")
     const [dueDate, setDueDate] = useState("")
@@ -26,7 +38,7 @@ function AddTask() {
         setImageUrl('')
         setCompleted('false')
     }
-    
+
     return (
         <form onSubmit={handleSubmitTask}>
             <div className="flex">
@@ -55,9 +67,8 @@ function AddTask() {
             </div>
             <div className="flex">
                 <button>Add</button>
+                <button id="closeModal" class="dialog-close-btn">Close</button>
             </div>
         </form>
     )
 }
-
-export default AddTask;
