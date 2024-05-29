@@ -4,19 +4,25 @@ import IncreaseButton from './IncreaseButton';
 import DecreaseButton from './DecreaseButton';
 import EmptyCartButton from './EmptyCartButton';
 import AddToCartButton from './AddToCartButton';
-
+// import { useContext } from "react";
+// import { CartContext } from "./CartProvider";
 
 const PlantCard = ({ id, name, price, imageUrl }) => {
     const [quantity, setQuantity] = useState(1);
     const [inCartAmnt, setInCartAmnt] = useState(0);
+    
+    // const { addToCart } = useContext(CartContext)
+    // function handleAddToCart() {
+    //     addToCart(id)
+    // }
 
     function handleIncrease() {
         setQuantity(quantity + 1) 
     }
 
     function handleDecrease() {
-        if(quantity==0){
-            setQuantity(0)
+        if(quantity===1){
+            setQuantity(1)
         } else {
         setQuantity(quantity - 1) }
     }
@@ -26,8 +32,9 @@ const PlantCard = ({ id, name, price, imageUrl }) => {
         setInCartAmnt(0);
     }
 
-    function handleAddCart() {
+    function handleAddToCart() {
         setInCartAmnt(quantity+inCartAmnt)
+        setQuantity(1)
     }
 
     return (
@@ -46,7 +53,7 @@ const PlantCard = ({ id, name, price, imageUrl }) => {
                             <p>Quantity: {quantity}</p>
                             <IncreaseButton increase={handleIncrease}/>
                         </div>
-                            <AddToCartButton add={handleAddCart}/>
+                            <AddToCartButton add={handleAddToCart}/>
                         <div className="flex">
                             <p>In cart: {inCartAmnt}</p>
                             <EmptyCartButton reset={emptyCart}/>
