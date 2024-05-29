@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
-export default function HomeContent() {
+function HomeContent() {
     return (
         <div className="flex">
-            <img src="https://picsum.photos/250"/>
+            <img src="https://picsum.photos/300" alt=""/>
             <div>
                 <h2>This is the place I'll be writing a list of things to do!</h2>
                 <h4>Blurb: some info can go here about the task list I'm creating and what it will do.</h4>
@@ -12,9 +12,13 @@ export default function HomeContent() {
                     <button>
                         <Link to='/list'>Task List</Link>
                     </button>
-                    <button>Add</button>
+                    <button>
+                        <Link to="/add">Add</Link>
+                    </button>
                 </div>
             </div>
         </div>
     )
 }
+
+export default HomeContent;

@@ -1,6 +1,6 @@
 import HomeContent from "../components/HomeContent";
 
-export default function HomePage() {
+function HomePage() {
     return (
         <div>
             <HomeContent />
@@ -8,3 +8,5 @@ export default function HomePage() {
         
     );
 }
+
+export default HomePage;

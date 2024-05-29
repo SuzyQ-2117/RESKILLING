@@ -8,7 +8,7 @@ const Create = () => {
     function handleSubmit(e) {
         e.preventDefault();
         const user = { first, last, title }
-        fetch('http://localhost:8000/users', {
+        fetch('Day20_React_Tuesday/task12/data/db.json', {
             method: 'POST',
             headers: {"Content-Type": "application/json" },
             body: JSON.stringify(user)
@@ -41,3 +41,5 @@ const Create = () => {
 }
 
 export default Create;
+
+// weblink for spinning up json-server: http://localhost:8000/users
