@@ -4,7 +4,7 @@ import '../CSS/NavBar.css'
 function NavBar() {
     return (
         <div className="navbar">
-            <h1>SuzyQ's To-Do</h1>
+            <h1>SuzyQ's To-Dos!</h1>
             <div>
                 <ul className=" flex list">
                     <li>

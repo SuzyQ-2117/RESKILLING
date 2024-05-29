@@ -1,6 +1,6 @@
 import TaskCard from '../components/TaskCard';
 import TaskList from '../TaskList.json'
-import 
+import '../CSS/TaskList.css'
 
 const ShowTasks = () => {
 

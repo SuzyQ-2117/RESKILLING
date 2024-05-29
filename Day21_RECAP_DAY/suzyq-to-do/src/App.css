@@ -1,10 +1,26 @@
 * {
-  outline: 0px solid red;
+  font-family: Poppins;
+  outline: 0x solid red;
   text-align: center;
   margin: 0;
   padding: 0;
 }
 
+.footer {
+  padding: 10px 20px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.small-text {
+  font-size: x-small;
+}
 
 .App {
   text-align: center;

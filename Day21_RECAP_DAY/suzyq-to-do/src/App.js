@@ -18,9 +18,10 @@ function App() {
           <Route path='/add' element={<AddTaskPage />} />
         </Routes>
       </BrowserRouter>
-      {/* <footer>
-        BLANK
-      </footer> */}
+      <footer>
+        <p class="footer float-left">Made by: SuzyQ</p>
+        <p class="footer float-right">Last updated: 23:45 <span class="small-text">(that's way past my bedtime!)</span></p>
+      </footer>
     </div>
   );
 }
