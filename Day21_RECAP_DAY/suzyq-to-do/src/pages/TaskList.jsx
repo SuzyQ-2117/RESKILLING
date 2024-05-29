@@ -1,11 +1,22 @@
 import TaskCard from '../components/TaskCard';
+import TaskList from '../TaskList.json'
 
 const ShowTasks = () => {
 
     return (
-        <div className="flex">
+        <div>
             <h1>Current Task List</h1>
-            <TaskCard />
+            <div className="flex">
+            {TaskList.tasks.map((tasks) => (
+                <TaskCard 
+                priority={tasks.priority}
+                name={tasks.name}
+                dueDate={tasks.dueDate}
+                info={tasks.info}
+                imageUrl={tasks.imageUrl}
+                />
+            ))}
+            </div>
         </div>
     )
 }

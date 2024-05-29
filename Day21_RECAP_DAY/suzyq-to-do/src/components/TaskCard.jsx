@@ -1,10 +1,9 @@
 import TaskList from '../TaskList.json'
 
-function TaskCard({ name, priority, dueDate, info, imageUrl }) {
+export default function TaskCard({ name, priority, dueDate, info, imageUrl }) {
     return (
         <div>
-            <div className="flex">
-            {/* {TaskList.map((tasks) => ( */}
+            <div className=" ">
                 <div>
                     <img src={imageUrl} alt=""/>
                     <div>
@@ -17,12 +16,9 @@ function TaskCard({ name, priority, dueDate, info, imageUrl }) {
                     </div>
                 <p>{info}</p>
                 </div>
-            {/* ))} */}
             </div>
         </div>
     );
 }
-
-export default TaskCard;
 
 //no mapping in the card component - you're just laying out what sits where
