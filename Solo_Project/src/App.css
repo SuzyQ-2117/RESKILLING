@@ -1,0 +1,43 @@
+* {
+  outline: 0px solid red;
+}
+
+.App {
+  background-image: linear-gradient(to bottom right, rgb(117,142,138),rgb(71,96,100));
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5em;
+}
+
+.nav-logo {
+  max-width: 20vw;
+}
+
+.flex {
+  display: flex;
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 1vw;
+  justify-content: space-around;
+  color: silver;
+}
