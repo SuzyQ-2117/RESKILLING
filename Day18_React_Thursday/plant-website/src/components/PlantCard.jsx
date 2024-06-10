@@ -1,8 +1,5 @@
 import PlantData from '../plantData.json';
 import { useState } from 'react';
-import IncreaseButton from './IncreaseButton';
-import DecreaseButton from './DecreaseButton';
-import EmptyCartButton from './EmptyCartButton';
 import AddToCartButton from './AddToCartButton';
 // import { useContext } from "react";
 // import { CartContext } from "./CartProvider";
@@ -49,14 +46,14 @@ const PlantCard = ({ id, name, price, imageUrl }) => {
                         <h3 class="green-text">{Plant.name}</h3>
                         <h5 class="green-text">£{Plant.price.toFixed(2)}</h5>
                         <div className="flex">
-                            <DecreaseButton decrease={handleDecrease}/>
-                            <p>Quantity: {quantity}</p>
-                            <IncreaseButton increase={handleIncrease}/>
+                        <button onClick={handleDecrease}>-</button>
+                        <p>Quantity: {quantity}</p>
+                        <button onClick={handleIncrease}>+</button>
                         </div>
                             <AddToCartButton add={handleAddToCart}/>
                         <div className="flex">
                             <p>In cart: {inCartAmnt}</p>
-                            <EmptyCartButton reset={emptyCart}/>
+                            <button onClick={emptyCart}>🗑</button>
                         </div>
                     </div>
                 ))}
