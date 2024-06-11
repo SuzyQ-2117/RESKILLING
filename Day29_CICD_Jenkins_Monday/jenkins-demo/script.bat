@@ -1,0 +1,1 @@
+echo "Print some words on the screen"

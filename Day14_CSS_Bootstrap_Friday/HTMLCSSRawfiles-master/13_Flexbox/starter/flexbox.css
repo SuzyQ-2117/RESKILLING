@@ -1,0 +1,50 @@
+.flex-item {
+    background: tomato;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+
+    line-height: 100px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+.wrap li {
+    background: gold;
+}
+
+.wrap-reverse li {
+    background: deepskyblue;
+}
+
+.justify li {
+    background: limegreen;
+}
+
+.flex-container {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    border: 1px solid silver;
+}
+
+.nowrap {
+    flex-wrap:nowrap;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+.justify {
+    flex-direction: row;
+    justify-content: center;
+}
