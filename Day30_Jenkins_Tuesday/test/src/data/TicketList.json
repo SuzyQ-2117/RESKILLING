@@ -1,0 +1,31 @@
+{
+  "tickets": [
+    {
+      "id": "sd34",
+      "title": "Can't log in",
+      "notes": "Quick description text that can be expanded down if it's too much. I'm only typing this much to ensure the card body is bulked up a bit.",
+      "name": "Suzy Brown",
+      "date": "11/06/2024",
+      "time": "15:00",
+      "description":  "some notes will go here if they have been added to the ticket"
+    },
+    {
+      "id": "r47y",
+      "title": "Can't log in",
+      "description": "some notes will go here if they have been added to the ticket",
+      "name": "Ben Aldous",
+      "date": "11/06/2024",
+      "time": "12:00",
+      "notes": "Quick description text that can be expanded down if it's too much. I'm only typing this much to ensure the card body is bulked up a bit."
+    },
+    {
+      "id": "2ebd",
+      "title": "Printer not working",
+      "description": "Printer is not printing",
+      "name": "Chris Evans",
+      "date": "2024-06-11",
+      "time": "12:30",
+      "notes": "Printer was complaining about low toner"
+    }
+  ]
+}
