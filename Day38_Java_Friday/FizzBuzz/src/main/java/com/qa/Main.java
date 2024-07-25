@@ -15,7 +15,7 @@ public class Main {
                 System.out.println("FizzBuzz!");
             } else if(number % 3 == 0) {
                 System.out.println("Fizz!");
-            } else if(number % 5 == 0) {
+            } else if(number % 5 ==  0) {
                 System.out.println("Buzz!");
             } else {
                 System.out.println(number + " doesn't Fizz or Buzz :( Try again!");

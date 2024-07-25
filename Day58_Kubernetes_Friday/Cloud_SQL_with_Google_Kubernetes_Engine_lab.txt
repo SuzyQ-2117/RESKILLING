@@ -1,0 +1,394 @@
+Using Cloud SQL with Google Kubernetes Engine
+schedule
+2 hours
+universal_currency_alt
+1 Credit
+info
+This lab may incorporate AI tools to support your learning.
+Overview
+In this lab, you set up a Kubernetes Deployment of WordPress connected to Cloud SQL via the SQL Proxy. The SQL Proxy lets you interact with a Cloud SQL instance as if it were installed locally (localhost:3306), and even though you are on an unsecured port locally, the SQL Proxy makes sure you are secure over the wire to your Cloud SQL Instance.
+
+To complete this lab you'll create several components. First you create a GKE cluster, next you create a Cloud SQL Instance to connect to, and a Service Account to provide permission for your Pods to access the Cloud SQL Instance, this will be authenticated using Workload Identity. Finally you deploy WordPress on your GKE cluster, with the SQL Proxy as a Sidecar, connected to your Cloud SQL Instance.
+
+Objectives
+In this lab, you learn how to perform the following tasks:
+
+Create a Cloud SQL instance and database for Wordpress.
+Create credentials and Kubernetes Secrets for application authentication.
+Configure Workload Identity.
+Configure a Deployment with a Wordpress image to use SQL Proxy.
+Install SQL Proxy as a sidecar container and use it to provide SSL access to a CloudSQL instance external to the GKE Cluster.
+Lab setup
+Access Qwiklabs
+For each lab, you get a new Google Cloud project and set of resources for a fixed time at no cost.
+
+Sign in to Qwiklabs using an incognito window.
+
+Note the lab's access time (for example, 1:15:00), and make sure you can finish within that time.
+There is no pause feature. You can restart if needed, but you have to start at the beginning.
+
+When ready, click Start lab.
+
+Note your lab credentials (Username and Password). You will use them to sign in to the Google Cloud Console.
+
+Click Open Google Console.
+
+Click Use another account and copy/paste credentials for this lab into the prompts.
+If you use other credentials, you'll receive errors or incur charges.
+
+Accept the terms and skip the recovery resource page.
+
+Note: Do not click End Lab unless you have finished the lab or want to restart it. This clears your work and removes the project.
+
+After you complete the initial sign-in steps, the project dashboard appears.
+
+Activate Google Cloud Shell
+Google Cloud Shell is a virtual machine that is loaded with development tools. It offers a persistent 5GB home directory and runs on the Google Cloud.
+
+Google Cloud Shell provides command-line access to your Google Cloud resources.
+
+In Cloud console, on the top right toolbar, click the Open Cloud Shell button.
+
+Highlighted Cloud Shell icon
+
+Click Continue.
+
+It takes a few moments to provision and connect to the environment. When you are connected, you are already authenticated, and the project is set to your PROJECT_ID. For example:
+
+Project ID highlighted in the Cloud Shell Terminal
+
+gcloud is the command-line tool for Google Cloud. It comes pre-installed on Cloud Shell and supports tab-completion.
+
+You can list the active account name with this command:
+gcloud auth list
+Copied!
+Output:
+
+Credentialed accounts:
+ - @.com (active)
+Example output:
+
+Credentialed accounts:
+ - google1623327_student@qwiklabs.net
+You can list the project ID with this command:
+gcloud config list project
+Copied!
+Output:
+
+[core]
+project = 
+Example output:
+
+[core]
+project = qwiklabs-gcp-44776a13dea667a6
+Note: Full documentation of gcloud is available in the gcloud CLI overview guide .
+Task 1. Connect to the lab GKE cluster
+In Cloud Shell, type the following command to set the environment variable for the Google Cloud zone and cluster name:
+  
+export my_cluster=autopilot-cluster-1
+export my_project=$(gcloud config get-value project)
+export my_region=""
+Copied!
+Configure tab completion for the kubectl command-line tool:
+source <(kubectl completion bash)
+Copied!
+Configure access to your cluster for kubectl:
+gcloud container clusters get-credentials $my_cluster --region $my_region
+Copied!
+Task 2. Enable Cloud SQL APIs
+In the Google Cloud Console, on the Navigation menu (Navigation menu icon), click APIs & Services.
+
+Click + Enable APIs and Services.
+
+For Search for APIs & Services, type SQL and then click the Cloud SQL API tile.
+
+Click Enable to enable Cloud SQL API.
+
+If the API is already enabled, a Manage button appears instead, with an API enabled message. In that case, no action is required.
+
+Repeat the above step to enable sqladmin API.
+Task 3. Create a Cloud SQL instance
+In the Cloud Shell, run the following command to create the instance:
+gcloud sql instances create sql-instance --tier=db-n1-standard-2 --region=$my_region
+Copied!
+In the Google Cloud console, navigate to SQL.
+You should see sql-instance listed , click on the name, and then click on the Users menu.
+Note: You have to wait a few minutes for the Cloud SQL instance to be provisioned.
+When you see the existing root user listed you can proceed to the next step.
+
+Click Add User Account and create an account, using sqluser as the username and sqlpassword as the password.
+
+Leave the Host name option set to Allow any host (%). and click ADD.
+
+Go back to Overview menu, still in your instance (sql-instance), and copy your Instance connection name.
+
+You will probably need to scroll down a bit to see it.
+
+Create an environment variable to hold your Cloud SQL instance name, substituting the placeholder with the name you copied in the previous step:
+export SQL_NAME=[Cloud SQL Instance Name]
+Copied!
+Your command should look similar to the following:
+$ export SQL_NAME=qwiklabs-gcp-d03ee58ad9ad507e:us-central1:sql-instance
+Connect to your Cloud SQL instance:
+gcloud sql connect sql-instance
+Copied!
+When prompted to enter the root password press enter. The root SQL user password is blank by default.
+The mysql> prompt appears indicating that you are now connected to the Cloud SQL instance using the MySQL client.
+
+Create the database required for Wordpress. This is called wordpress by default:
+create database wordpress;
+Copied!
+Select the wordpress database:
+use wordpress;
+Copied!
+Select the wordpress database:
+show tables;
+Copied!
+This will report Empty set as you have not created any tables yet.
+
+Exit the MySQL client:
+exit;
+Copied!
+Click Check my progress to verify the objective.
+
+Create a Cloud SQL Instance
+Task 4. Prepare a Service Account with permission to access Cloud SQL
+To create a Service Account, in the Google Cloud console navigate to IAM & Admin> Service Accounts.
+
+Click + Create Service Account.
+
+Specify the Service account name called sql-access then click Create and Continue.
+
+Click Select a role.
+
+Search for Cloud SQL, select Cloud SQL Client and click Continue.
+
+Click Done.
+
+Locate the service account sql-access and click on three dots icon in Actions column.
+
+Select Manage keys.
+
+Then click on ADD KEY and select Create new key.
+
+Ensure JSON key type is selected and click CREATE.
+
+This will create a public/private key pair, and download the private key file automatically to your computer. You'll need this JSON file later.
+
+Click Close to close the notification dialog.
+Locate the JSON credential file you downloaded and rename it to credentials.json
+Task 5. Create Kubernetes Service Account and configure Workload Identity
+In the Cloud Shell, run the following command to create the Kubernetes Service Account:
+kubectl create serviceaccount gkesqlsa
+Copied!
+In the Cloud Shell, run the following command to bind the Google Cloud service account with the Kubernetes Service Account you just created:
+gcloud iam service-accounts add-iam-policy-binding \
+--role="roles/iam.workloadIdentityUser" \
+--member="serviceAccount:$my_project.svc.id.goog[default/gkesqlsa]" \
+sql-access@$my_project.iam.gserviceaccount.com
+Copied!
+In the Cloud Shell, run the following command to annotate the Kubernetes Service Account with the details of the Google Cloud service account:
+kubectl annotate serviceaccount \
+gkesqlsa \
+iam.gke.io/gcp-service-account=sql-access@$my_project.iam.gserviceaccount.com
+Copied!
+Click Check my progress to verify the objective.
+
+Create Service Account
+Task 6. Create Secrets
+You create two Kubernetes Secrets: one to provide the MySQL credentials and one to provide the Google credentials (the service account).
+
+To create a Secret for your MySQL credentials, enter the following in the Cloud Shell:
+kubectl create secret generic sql-credentials \
+   --from-literal=username=sqluser\
+   --from-literal=password=sqlpassword
+Copied!
+If you used a different username and password when creating the Cloud SQL user accounts substitute those here.
+
+In the Cloud Shell, click More (More icon) on the far right of the Cloud Shell menu bar.
+
+Select Upload, leave File selected and click on Choose Files and Upload the credentials.json credential file you downloaded in the previous task to the Cloud Shell.
+
+In the Cloud Shell move the credential file to the current working directory:
+
+mv ~/credentials.json .
+Copied!
+Files uploaded to the Cloud Shell are uploaded to the user's home directory. It is easier to work with files in the current working directory with kubectl so moving it makes the next step simpler.
+
+Create a Secret for your Google Cloud Service Account credentials using the following command:
+kubectl create secret generic google-credentials\
+   --from-file=key.json=credentials.json
+Copied!
+Click Check my progress to verify the objective.
+
+Create Secrets
+Task 7. Deploy the SQL Proxy agent as a sidecar container
+Let's create a deployment manifest file called sql-proxy.yaml that deploys a demo Wordpress application container with the SQL Proxy agent as a sidecar container.
+
+In the Wordpress container environment settings the WORDPRESS_DB_HOST is specified using the localhost IP address. The cloudsql-proxy sidecar container is configured to point to the Cloud SQL instance you created in the previous task. The database username and password are passed to the Wordpress container as secret keys, and Workload Identity is configured. A Service is also created to allow you to connect to the Wordpress instance from the internet.
+
+Create and open a file called sql-proxy.yaml with nano using the following command:
+
+nano sql-proxy.yaml
+Copied!
+Once nano has opened, paste the following into the sql-proxy.yaml file:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      serviceAccountName: gkesqlsa
+      containers:
+        - name: web
+          image: gcr.io/cloud-marketplace/google/wordpress:6.1
+          #image: wordpress:5.9
+          ports:
+            - containerPort: 80
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: 127.0.0.1:3306
+            # These secrets are required to start the pod.
+            # [START cloudsql_secrets]
+            - name: WORDPRESS_DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: sql-credentials
+                  key: username
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sql-credentials
+                  key: password
+            # [END cloudsql_secrets]
+        # Change '<INSTANCE_CONNECTION_NAME>' here to include your Google Cloud
+        # project, the region of your Cloud SQL instance and the name
+        # of your Cloud SQL instance. The format is
+        # $PROJECT:$REGION:$INSTANCE
+        # [START proxy_container]
+        - name: cloudsql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.8.0
+          args: 
+           - "--structured-logs"
+           - "--port=3306"
+           -  "<INSTANCE_CONNECTION_NAME>" 
+          securityContext:
+            runAsNonRoot: true 
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "wordpress-service"
+  namespace: "default"
+  labels:
+    app: "wordpress"
+spec:
+  ports:
+  - protocol: "TCP"
+    port: 80
+  selector:
+    app: "wordpress"
+  type: "LoadBalancer"
+  loadBalancerIP: ""
+Copied!
+Press Ctrl+O, and then press Enter to save your edited file.
+
+Press Ctrl+X to exit the nano text editor.
+
+The important sections to note in this manifest are:
+
+In the spec section the Kubernetes Service Account is configured.
+In the Wordpress env section the variable WORDPRESS_DB_HOST is set to 127.0.0.1:3306. This will connect to a container in the same Pod listening on port 3306. This is the port that the SQL-Proxy listens on by default.
+In the Wordpress env section the variables WORDPRESS_DB_USER and WORDPRESS_DB_PASSWORD are set using values stored in the sql-credential Secret you created in the last task.
+In the cloudsql-proxy container section the command switch that defines the SQL Connection name, "INSTANCE_CONNECTION_NAME> contains a placeholder variable that is not configured using a ConfigMap or Secret and so must be updated directly in this example manifest to point to your Cloud SQL instance.
+The Service section at the end creates an external LoadBalancer called "wordpress-service" that allows the application to be accessed from external internet addresses.
+Use sed to update the placeholder variable for the SQL Connection name to the instance name of your Cloud SQL instance:
+sed -i 's/<INSTANCE_CONNECTION_NAME>/'"${SQL_NAME}"'/g'\
+   sql-proxy.yaml
+Copied!
+Note: The sed command in UNIX is stands for stream editor and it can perform many functions on files such as replace, insertion, or deletion. Though most common use of sed is for substitution. By using sed you can edit files even without opening them, which is much quicker way to find and replace something in file, than first opening that file in an editor and then changing it.
+Deploy the application:
+kubectl apply -f sql-proxy.yaml
+Copied!
+Query the status of the Deployment:
+kubectl get deployment wordpress
+Copied!
+Note: You need to repeat this command until you see that an instance is available.
+Output:
+
+NAME        READY   UP-TO-DATE   AVAILABLE   AGE
+wordpress   1/1     1            1           45s
+List the services in your GKE cluster:
+kubectl get services
+Copied!
+The external LoadBalancer ip-address for the wordpress-service is the address you use to connect to your Wordpress blog.
+
+Repeat the command until you get an external address as shown here.
+NAME              TYPE         CLUSTER-IP   EXTERNAL-IP    PORT(S)
+kubernetes        ClusterIP    10.12.0.1             443/TCP
+wordpress-service LoadBalancer 10.12.3.17   35.238.218.6   80:31095/TCP
+Click Check my progress to verify the objective.
+
+Deploy the SQL Proxy agent as a sidecar container
+Task 7. Connect to your Wordpress instance
+Open a new browser tab and connect to your Wordpress site using the external LoadBalancer ip-address. This will start the initial Wordpress installation wizard.
+Select English (United States) and click Continue.
+Enter a sample name for the Site Title.
+Enter a Username and Password to administer the site.
+Enter an email address.
+None of these values are particularly important, you will not need to use them.
+
+Click Install Wordpress.
+After a few seconds you will see the Success! Notification. You can log in if you wish to explore the Wordpress admin interface but it is not required for the lab.
+
+The initialization process has created new database tables and data in the wordpress database on your Cloud SQL instance. You will now validate that these new database tables have been created using the SQL proxy container.
+
+Switch back to the Cloud Shell and connect to your Cloud SQL instance:
+gcloud sql connect sql-instance
+Copied!
+When prompted to enter the root password press enter. The root SQL user password is blank by default.
+The mysql> prompt appears indicating that you are now connected to the Cloud SQL instance using the MySQL client.
+
+Select the wordpress database:
+use wordpress;
+
+Select the wordpress database:
+show tables;
+
+This will now show a number of new database tables that were created when Wordpress was initialized demonstrating that the sidecar SQL Proxy container was configured correctly:
+
+MySQL [wordpress]> show tables;
++-----------------------+
+| Tables_in_wordpress   |
++-----------------------+
+| wp_commentmeta        |
+| wp_comments           |
+| wp_links              |
+| wp_options            |
+| wp_postmeta           |
+| wp_posts              |
+| wp_term_relationships |
+| wp_term_taxonomy      |
+| wp_termmeta           |
+| wp_terms              |
+| wp_usermeta           |
+| wp_users              |
++-----------------------+
+12 rows in set (0.19 sec)
+List all of the Wordpress user table entries:
+select * from wp_users;
+Copied!
+This will list the database record for the Wordpress admin account showing the email you chose when initializing Wordpress.
+
+Exit the MySQL client:
+exit;
+

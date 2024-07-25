@@ -21,19 +21,22 @@ public class PersonServiceUnitTest {
     @MockBean
     private PersonRepo repo;
 
-//    @Test
-//    void testUpdate() {
-//        // GIVEN
-//        int id = 1;
-//        Person updated = new Person(id, "Top", 50, "Cat");
-//
-//        // WHEN
-//        Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(new Person(1, null, null, null)));
-//        Mockito.when(this.repo.save(updated)).thenReturn(updated);
-//
-//        // THEN
-//        Assertions.assertEquals(updated, this.service.updatePerson(id, updated.getName(), updated.getAge(), updated.getJob()));
-//    }
+
+    // REMEMBER TO ADD THE EQUALS METHOD! This needs
+
+    @Test
+    void testUpdate() {
+        // GIVEN
+        int id = 1;
+        Person updated = new Person(id, "Top", 50, "Cat");
+
+        // WHEN
+        Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(new Person(1, null, 1, null)));
+        Mockito.when(this.repo.save(updated)).thenReturn(updated);
+
+        // THEN
+        Assertions.assertEquals(updated, this.service.updatePerson(id, updated.getName(), updated.getAge(), updated.getJob()));
+    }
 
     @Test
     void testCreate() {
